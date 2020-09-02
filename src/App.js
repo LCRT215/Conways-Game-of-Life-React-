@@ -2,6 +2,8 @@ import React, { useState, useCallback, useRef } from "react";
 import "./App.css";
 import produce from "immer";
 
+// } from "reactstrap";
+
 let numRows = 25;
 let numCols = 25;
 
@@ -39,13 +41,13 @@ const App = () => {
     false
   ); /* is the game running? starts off*/
 
-  const [fast, setSpeed] = useState(false);
+  const [fast, setSpeed] = useState(true);
 
   let speed = () => {
     if (fast) {
-      return 1000;
-    } else if (!fast) {
       return 10;
+    } else if (!fast) {
+      return 1000;
     }
   };
 
@@ -96,6 +98,8 @@ const App = () => {
     //If the game should be running, call runGame again, until not on
 
     setTimeout(runGame, speed);
+    // if (fast) setTimeout(runGame, 10000);
+    // else setTimeout(runGame, 100);
   }, []);
 
   return (
@@ -103,7 +107,7 @@ const App = () => {
       <button
         onClick={() => {
           setSpeed(false);
-          console.log(fast);
+          console.log(speed);
           runGame();
         }}
       >
@@ -113,7 +117,7 @@ const App = () => {
       <button
         onClick={() => {
           setSpeed(true);
-          console.log(fast);
+          console.log(speed);
           runGame();
         }}
       >
@@ -130,6 +134,7 @@ const App = () => {
       >
         {running ? "stop" : "start"}
       </button>
+
       <button
         onClick={() => {
           const rows = [];
@@ -187,7 +192,8 @@ const App = () => {
                 width: 20,
                 height: 20,
                 backgroundColor: grid[i][k] ? getRandomColor() : undefined,
-                border: grid[i][k] ? "solid yellow 2px" : "solid 1px black",
+                border: "solid 1px black",
+                // grid[i][k] ? "solid yellow 2px" :
               }}
             />
           ))
