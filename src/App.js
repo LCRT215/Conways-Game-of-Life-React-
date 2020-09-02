@@ -2,7 +2,6 @@ import React, { useState, useCallback, useRef } from "react";
 import "./App.css";
 import produce from "immer";
 
-// } from "reactstrap";
 
 let numRows = 70;
 let numCols = 25;
@@ -34,9 +33,7 @@ const generateEmptyGrid = () => {
 let speed = 1000;
 let speedDes = "average";
 
-// if (speed == 10){
-//   speedDes =
-// }
+
 
 // game play
 const App = () => {
