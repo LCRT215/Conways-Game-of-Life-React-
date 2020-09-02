@@ -31,6 +31,8 @@ const generateEmptyGrid = () => {
   return rows;
 };
 
+let speed = 1000;
+
 // game play
 const App = () => {
   const [grid, setGrid] = useState(() => {
@@ -41,19 +43,20 @@ const App = () => {
     false
   ); /* is the game running? starts off*/
 
-  const [fast, setSpeed] = useState(true);
+  // const [fast, setSpeed] = useState(false);
 
-  let speed = () => {
-    if (fast) {
-      return 10;
-    } else if (!fast) {
-      return 1000;
-    }
-  };
+  // let speed = () => {
+  //   if (fast) {
+  //     return 10;
+  //   } else if (!fast) {
+  //     return 100;
+  //   }
+  // };
 
   /* references the game on state that is mutable and will persist*/
   const runningRef = useRef(running);
   runningRef.current = running; /* check the current value of gameOn */
+
   function getRandomColor() {
     var letters = "0123456789ABCDEF";
     var color = "#";
@@ -96,19 +99,19 @@ const App = () => {
       });
     });
     //If the game should be running, call runGame again, until not on
-
+    console.log("speed from run game", speed);
     setTimeout(runGame, speed);
+
     // if (fast) setTimeout(runGame, 10000);
     // else setTimeout(runGame, 100);
   }, []);
 
   return (
-    <>
+    <div>
       <button
         onClick={() => {
-          setSpeed(false);
-          console.log(speed);
-          runGame();
+          speed = 1000;
+          console.log("average", speed);
         }}
       >
         Average
@@ -116,9 +119,8 @@ const App = () => {
 
       <button
         onClick={() => {
-          setSpeed(true);
-          console.log(speed);
-          runGame();
+          speed = 100;
+          console.log("fast", speed);
         }}
       >
         Fast
@@ -156,7 +158,7 @@ const App = () => {
       >
         clear
       </button>
-      <p>Speed at 1000X </p>
+      <p>Speed at {speed}x </p>
       <br />
       <p>Rows: {numRows}</p>
       <br />
@@ -199,7 +201,7 @@ const App = () => {
           ))
         )}
       </div>
-    </>
+    </div>
   );
 };
 
