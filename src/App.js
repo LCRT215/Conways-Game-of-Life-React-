@@ -2,8 +2,8 @@ import React, { useState, useCallback, useRef } from "react";
 import "./App.css";
 import produce from "immer";
 
-const numRows = 25;
-const numCols = 25;
+let numRows = 25;
+let numCols = 25;
 
 //to find neighbors surrounding. mapping coordinates
 const operations = [
@@ -29,17 +29,25 @@ const generateEmptyGrid = () => {
   return rows;
 };
 
+// game play
 const App = () => {
   const [grid, setGrid] = useState(() => {
     return generateEmptyGrid();
   }); /* grid state */
 
-  const [fast, setSpeed] = useState(false);
-  let speed = fast ? 100 : 1000;
-
   const [running, setRunning] = useState(
     false
   ); /* is the game running? starts off*/
+
+  const [fast, setSpeed] = useState(false);
+
+  let speed = () => {
+    if (fast) {
+      return 1000;
+    } else if (!fast) {
+      return 10;
+    }
+  };
 
   /* references the game on state that is mutable and will persist*/
   const runningRef = useRef(running);
@@ -94,22 +102,22 @@ const App = () => {
     <>
       <button
         onClick={() => {
-          setSpeed(true);
-          console.log(fast);
-          runGame();
-        }}
-      >
-        fast
-      </button>
-
-      <button
-        onClick={() => {
           setSpeed(false);
           console.log(fast);
           runGame();
         }}
       >
-        avg
+        Average
+      </button>
+
+      <button
+        onClick={() => {
+          setSpeed(true);
+          console.log(fast);
+          runGame();
+        }}
+      >
+        Fast
       </button>
       <button
         onClick={() => {
@@ -144,6 +152,21 @@ const App = () => {
         clear
       </button>
       <p>Speed at 1000X </p>
+      <br />
+      <p>Rows: {numRows}</p>
+      <br />
+
+      <button
+        onClick={() => {
+          numCols++;
+          console.log(numCols);
+        }}
+      >
+        +
+      </button>
+
+      <p>Columns: {numCols}</p>
+
       <div
         style={{
           display: "grid",
@@ -164,7 +187,7 @@ const App = () => {
                 width: 20,
                 height: 20,
                 backgroundColor: grid[i][k] ? getRandomColor() : undefined,
-                border: "solid 1px black",
+                border: grid[i][k] ? "solid yellow 2px" : "solid 1px black",
               }}
             />
           ))
