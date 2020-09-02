@@ -4,7 +4,7 @@ import produce from "immer";
 
 // } from "reactstrap";
 
-let numRows = 25;
+let numRows = 70;
 let numCols = 25;
 
 //to find neighbors surrounding. mapping coordinates
@@ -32,6 +32,11 @@ const generateEmptyGrid = () => {
 };
 
 let speed = 1000;
+let speedDes = "average";
+
+// if (speed == 10){
+//   speedDes =
+// }
 
 // game play
 const App = () => {
@@ -42,16 +47,6 @@ const App = () => {
   const [running, setRunning] = useState(
     false
   ); /* is the game running? starts off*/
-
-  // const [fast, setSpeed] = useState(false);
-
-  // let speed = () => {
-  //   if (fast) {
-  //     return 10;
-  //   } else if (!fast) {
-  //     return 100;
-  //   }
-  // };
 
   /* references the game on state that is mutable and will persist*/
   const runningRef = useRef(running);
@@ -101,30 +96,38 @@ const App = () => {
     //If the game should be running, call runGame again, until not on
     console.log("speed from run game", speed);
     setTimeout(runGame, speed);
-
-    // if (fast) setTimeout(runGame, 10000);
-    // else setTimeout(runGame, 100);
   }, []);
 
   return (
     <div>
       <button
         onClick={() => {
-          speed = 1000;
-          console.log("average", speed);
-        }}
-      >
-        Average
-      </button>
-
-      <button
-        onClick={() => {
-          speed = 100;
+          speed = 10;
+          speedDes = "fast";
           console.log("fast", speed);
         }}
       >
         Fast
       </button>
+      <button
+        onClick={() => {
+          speed = 100;
+          speedDes = "average";
+          console.log("average", speed);
+        }}
+      >
+        Average
+      </button>
+      <button
+        onClick={() => {
+          speed = 1000;
+          speedDes = "slow";
+          console.log("slow", speed);
+        }}
+      >
+        Slow
+      </button>
+
       <button
         onClick={() => {
           setRunning(!running);
@@ -158,10 +161,11 @@ const App = () => {
       >
         clear
       </button>
-      <p>Speed at {speed}x </p>
+
+      <p>Speed is: {speedDes} </p>
       <br />
       <p>Rows: {numRows}</p>
-      <br />
+      {/* <br />
 
       <button
         onClick={() => {
@@ -170,7 +174,7 @@ const App = () => {
         }}
       >
         +
-      </button>
+      </button> */}
 
       <p>Columns: {numCols}</p>
 
