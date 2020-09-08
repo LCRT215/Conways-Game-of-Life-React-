@@ -1,10 +1,13 @@
 import React, { useState, useCallback, useRef } from "react";
 import "./App.css";
 import produce from "immer";
+import ButtonContainer from "./components/ButtonContainer";
 
-
-let numRows = 70;
+//Global variables
+let numRows = 25;
 let numCols = 25;
+let speed = 1000;
+let speedDes = "average";
 
 //to find neighbors surrounding. mapping coordinates
 const operations = [
@@ -29,11 +32,6 @@ const generateEmptyGrid = () => {
 
   return rows;
 };
-
-let speed = 1000;
-let speedDes = "average";
-
-
 
 // game play
 const App = () => {
@@ -97,83 +95,20 @@ const App = () => {
 
   return (
     <div>
-      <button
-        onClick={() => {
-          speed = 10;
-          speedDes = "fast";
-          console.log("fast", speed);
-        }}
-      >
-        Fast
-      </button>
-      <button
-        onClick={() => {
-          speed = 100;
-          speedDes = "average";
-          console.log("average", speed);
-        }}
-      >
-        Average
-      </button>
-      <button
-        onClick={() => {
-          speed = 1000;
-          speedDes = "slow";
-          console.log("slow", speed);
-        }}
-      >
-        Slow
-      </button>
+      <ButtonContainer
+        speed={speed}
+        speedDes={speedDes}
+        numCols={numCols}
+        numRows={numRows}
+        setRunning={setRunning}
+        running={running}
+        runningRef={runningRef}
+        setGrid={setGrid}
+        runGame={runGame}
+        generateEmptyGrid={generateEmptyGrid}
+      />
 
-      <button
-        onClick={() => {
-          setRunning(!running);
-          if (!running) {
-            runningRef.current = true;
-            runGame();
-          }
-        }}
-      >
-        {running ? "stop" : "start"}
-      </button>
 
-      <button
-        onClick={() => {
-          const rows = [];
-          for (let i = 0; i < numRows; i++) {
-            rows.push(
-              Array.from(Array(numCols), () => (Math.random() > 0.7 ? 1 : 0))
-            );
-          }
-
-          setGrid(rows);
-        }}
-      >
-        random
-      </button>
-      <button
-        onClick={() => {
-          setGrid(generateEmptyGrid());
-        }}
-      >
-        clear
-      </button>
-
-      <p>Speed is: {speedDes} </p>
-      <br />
-      <p>Rows: {numRows}</p>
-      {/* <br />
-
-      <button
-        onClick={() => {
-          numCols++;
-          console.log(numCols);
-        }}
-      >
-        +
-      </button> */}
-
-      <p>Columns: {numCols}</p>
 
       <div
         style={{
