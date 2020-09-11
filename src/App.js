@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useRef } from "react";
 import "./App.css";
 import produce from "immer";
-import ButtonContainer from "./components/ButtonContainer";
+// import ButtonContainer from "./components/ButtonContainer";
 
 //Global variables
 let numRows = 25;
@@ -94,8 +94,9 @@ const App = () => {
   }, []);
 
   return (
-    <div>
-      <ButtonContainer
+    <div className="app">
+    <h1>Conway's Game of Life</h1>
+      {/* <ButtonContainer
         speed={speed}
         speedDes={speedDes}
         numCols={numCols}
@@ -106,13 +107,86 @@ const App = () => {
         setGrid={setGrid}
         runGame={runGame}
         generateEmptyGrid={generateEmptyGrid}
-      />
+      /> */}
+      {/* Speed: fast*/}
+      <button
+        onClick={() => {
+          speed = 10;
+          speedDes = "fast";
+          console.log("fast", speed);
+        }}
+      >
+        Fast
+      </button>
+      {/* Speed: normal*/}
+      <button
+        onClick={() => {
+          speed = 100;
+          speedDes = "normal";
+          console.log("normal", speed);
+        }}
+      >
+        Normal
+      </button>
+      {/* Speed: slow*/}
+      <button
+        onClick={() => {
+          speed = 1000;
+          speedDes = "slow";
+          console.log("slow", speed);
+        }}
+      >
+        Slow
+      </button>
+      {/* Start/stop */}
+      <button
+        onClick={() => {
+          setRunning(!running);
+          if (!running) {
+            runningRef.current = true;
+            runGame();
+          }
+        }}
+      >
+        {running ? "Stop" : "Start"}
+      </button>
+      {/* Randomize  */}
+      <button
+        onClick={() => {
+          const rows = [];
+          for (let i = 0; i < numRows; i++) {
+            rows.push(
+              Array.from(Array(numCols), () => (Math.random() > 0.7 ? 1 : 0))
+            );
+          }
 
+          setGrid(rows);
+        }}
+      >
+        Randomize
+      </button>
+      {/* Clear*/}
+      <button
+        onClick={() => {
+          setGrid(generateEmptyGrid());
+        }}
+      >
+        Clear
+      </button>
 
+      <p>Speed is: {speedDes} </p>
+      <br />
+      <p>Rows: {numRows}</p>
+
+      <p>Columns: {numCols}</p>
+      <br />
+
+      {/* Grid */}
 
       <div
         style={{
           display: "grid",
+          justifyContent: "center",
           gridTemplateColumns: `repeat(${numCols}, 20px)`,
         }}
       >
