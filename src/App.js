@@ -108,7 +108,7 @@ const App = () => {
         runGame={runGame}
         generateEmptyGrid={generateEmptyGrid}
       /> */}
-      {/* Speed: fast*/}
+      Speed: fast
       <button
         onClick={() => {
           speed = 10;
