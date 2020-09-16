@@ -1,3 +1,5 @@
-/* .App {
+.app {
   text-align: center;
-} */
+  align-content: center;
+  border: solid green 2px;
+}

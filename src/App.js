@@ -1,10 +1,13 @@
 import React, { useState, useCallback, useRef } from "react";
 import "./App.css";
 import produce from "immer";
+// import ButtonContainer from "./components/ButtonContainer";
 
-
-let numRows = 70;
+//Global variables
+let numRows = 25;
 let numCols = 25;
+let speed = 1000;
+let speedDes = "average";
 
 //to find neighbors surrounding. mapping coordinates
 const operations = [
@@ -29,11 +32,6 @@ const generateEmptyGrid = () => {
 
   return rows;
 };
-
-let speed = 1000;
-let speedDes = "average";
-
-
 
 // game play
 const App = () => {
@@ -96,7 +94,21 @@ const App = () => {
   }, []);
 
   return (
-    <div>
+    <div className="app">
+    <h1>Conway's Game of Life</h1>
+      {/* <ButtonContainer
+        speed={speed}
+        speedDes={speedDes}
+        numCols={numCols}
+        numRows={numRows}
+        setRunning={setRunning}
+        running={running}
+        runningRef={runningRef}
+        setGrid={setGrid}
+        runGame={runGame}
+        generateEmptyGrid={generateEmptyGrid}
+      /> */}
+      Speed: fast
       <button
         onClick={() => {
           speed = 10;
@@ -106,15 +118,17 @@ const App = () => {
       >
         Fast
       </button>
+      {/* Speed: normal*/}
       <button
         onClick={() => {
           speed = 100;
-          speedDes = "average";
-          console.log("average", speed);
+          speedDes = "normal";
+          console.log("normal", speed);
         }}
       >
-        Average
+        Normal
       </button>
+      {/* Speed: slow*/}
       <button
         onClick={() => {
           speed = 1000;
@@ -124,7 +138,7 @@ const App = () => {
       >
         Slow
       </button>
-
+      {/* Start/stop */}
       <button
         onClick={() => {
           setRunning(!running);
@@ -134,9 +148,9 @@ const App = () => {
           }
         }}
       >
-        {running ? "stop" : "start"}
+        {running ? "Stop" : "Start"}
       </button>
-
+      {/* Randomize  */}
       <button
         onClick={() => {
           const rows = [];
@@ -149,35 +163,30 @@ const App = () => {
           setGrid(rows);
         }}
       >
-        random
+        Randomize
       </button>
+      {/* Clear*/}
       <button
         onClick={() => {
           setGrid(generateEmptyGrid());
         }}
       >
-        clear
+        Clear
       </button>
 
       <p>Speed is: {speedDes} </p>
       <br />
       <p>Rows: {numRows}</p>
-      {/* <br />
-
-      <button
-        onClick={() => {
-          numCols++;
-          console.log(numCols);
-        }}
-      >
-        +
-      </button> */}
 
       <p>Columns: {numCols}</p>
+      <br />
+
+      {/* Grid */}
 
       <div
         style={{
           display: "grid",
+          justifyContent: "center",
           gridTemplateColumns: `repeat(${numCols}, 20px)`,
         }}
       >
