@@ -127,10 +127,14 @@ function Game() {
             ))
           )}
         </div>{" "}
-        <p>Current speed: {speedDes} </p>
         <p>
-          {" "}
-          Grid Size: {numRows}x{numCols}
+          Current speed: <a style={{ color: "#87d4c4" }}>{speedDes}</a>{" "}
+        </p>
+        <p>
+          Grid Size:{" "}
+          <a style={{ color: "#87d4c4" }}>
+            {numRows}x{numCols}
+          </a>
         </p>
       </section>
 
@@ -150,11 +154,11 @@ function Game() {
         >
           {running ? "Stop" : "Start"}
         </button>
-        <hr style={{ border: "1px solid #473758" }} />
+        {/* <hr style={{ border: "1px solid #473758" }} /> */}
         {/* Set speed section */}
         <section>
           <div className="speedSection">
-            <p className="header">Set Speed</p>
+            <p style={{ color: "#87d4c4" , margin:"0", }}>Set Speed</p>
             {/* Speed: fast */}
             <button
               className="speedButton"
@@ -199,6 +203,7 @@ function Game() {
         >
           Clear Grid
         </button>
+        <br />
         {/* Randomize  */}
         <button
           className="button"

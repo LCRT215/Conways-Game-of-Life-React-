@@ -11,7 +11,13 @@ function About() {
         initial layout, and when executed, the game is capable of infinitely
         evolving. It is a turing complete algorithm that simulates cellular
         automata.
-      </p>
+      </p>{" "}
+      <a
+        style={{ color: "#ff7598" }}
+        href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life"
+      >
+        Conway's Game of Life Wiki
+      </a>
       <h3 style={{ color: "#87d4c4" }}>Cellular Automata</h3>
       <p>
         Cellular automation (CA) are discrete, abstract computational systems.

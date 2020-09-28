@@ -4,7 +4,7 @@ function Rules() {
   return (
     <div style={{ color: "#e06785" }}>
       <p style={{ color: "#87d4c4", fontSize: " 22px" }}>Rules:</p>
-      <ul>
+      <ul  style={{listStyleType:"none"}}>
         <li>
           Living cells that have two or three neighbors will remain alive in the
           next generation.
