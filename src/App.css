@@ -1,5 +1,8 @@
-.app {
-  text-align: center;
-  align-content: center;
-  border: solid green 2px;
+body {
+  /* text-align: center;
+  align-content: center; */
+  /* border: solid green 2px; */
+  background-color: #444054;
+  font-family: "Montserrat", sans-serif;
+  padding: 3% 0;
 }
