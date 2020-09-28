@@ -11,7 +11,11 @@ function Copyright() {
       }}
     >
       © Copyright{" "}
-      <a style={{ color: "#3ba590" }} href="https://leslie-thompson.com/">
+      <a
+        style={{ color: "#3ba590" }}
+        href="https://leslie-thompson.com/"
+        target="_blank"
+      >
         Leslie Thompson
       </a>{" "}
       2020

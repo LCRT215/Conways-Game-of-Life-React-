@@ -15,6 +15,7 @@ function About() {
       <a
         style={{ color: "#ff7598" }}
         href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life"
+        target="_blank"
       >
         Conway's Game of Life Wiki
       </a>
